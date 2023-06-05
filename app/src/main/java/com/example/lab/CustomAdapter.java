@@ -1,4 +1,4 @@
-package com.example.lab5_2;
+package com.example.lab;
 
 import android.view.LayoutInflater;
 import android.view.View;
