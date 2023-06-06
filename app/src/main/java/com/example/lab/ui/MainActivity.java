@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.lab.R;
 import com.example.lab.data.Users;
@@ -58,10 +60,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         Intent data = result.getData();
-                        if (data != null) {
+                        if (result.getResultCode() == RESULT_OK) {
                             String nom = data.getStringExtra("nom");
                             String courriel = data.getStringExtra("courriel");
                             viewModel.addUser(nom, courriel);
+                        } else if(result.getResultCode() == RESULT_CANCELED) {
+                            Toast toast = Toast.makeText(MainActivity.this, "Opération annulée !", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                     }
                 }
