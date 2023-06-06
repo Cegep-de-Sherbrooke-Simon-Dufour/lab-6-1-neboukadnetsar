@@ -1,4 +1,4 @@
-package com.example.lab;
+package com.example.lab.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,11 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.lab.R;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class AjoutUtilisateur extends AppCompatActivity {
 
     @Override
@@ -16,13 +21,22 @@ public class AjoutUtilisateur extends AppCompatActivity {
         setContentView(R.layout.activity_ajout_utilisateur);
 
         Button ajouter = findViewById(R.id.ajouter);
-        ajouter.setOnClickListener(ajouterListener);
+        //ajouter.setOnClickListener(ajouterListener);
+        ajouter.setOnClickListener(v -> {
+            EditText editName = findViewById(R.id.editName);
+            EditText editCourriel = findViewById(R.id.editCourriel);
+            Intent intent = new Intent();
+            intent.putExtra("nom", editName.getText().toString());
+            intent.putExtra("courriel", editCourriel.getText().toString());
+            setResult(RESULT_OK, intent);
+            finish();
+        });
 
         Button annuler = findViewById(R.id.annuler);
         annuler.setOnClickListener(annulerListener);
     }
 
-    View.OnClickListener ajouterListener = new View.OnClickListener() {
+    /*View.OnClickListener ajouterListener = new View.OnClickListener() {
         public void onClick(View v) {
 
             EditText editName = findViewById(R.id.editName);
@@ -34,7 +48,7 @@ public class AjoutUtilisateur extends AppCompatActivity {
             setResult(RESULT_OK, resultIntent);
             finish();
         }
-    };
+    };*/
 
     View.OnClickListener annulerListener = new View.OnClickListener() {
         public void onClick(View v) {

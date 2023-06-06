@@ -1,4 +1,4 @@
-package com.example.lab;
+package com.example.lab.ui;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> {
+import com.example.lab.R;
+import com.example.lab.RecyclerCallback;
+import com.example.lab.data.Users;
 
+public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> {
 
     public RecyclerCallback<Users> callback = (U) -> {};
 
@@ -19,16 +22,12 @@ public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> 
         super(new DiffUtil.ItemCallback<Users>() {
             @Override
             public boolean areItemsTheSame(Users oldUser, Users newUser) {
-
-                return oldUser.equals(newUser);
-                //return true;
+                return oldUser == newUser;
             }
 
             @Override
             public boolean areContentsTheSame(Users oldUser, Users newUser) {
-
                 return oldUser.getEmail().equals(newUser.getEmail()) && oldUser.getName().equals(newUser.getName());
-                //return true;
             }
         });
     }
@@ -63,9 +62,9 @@ public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> 
         }
 
         public void setItems(Users user) {
+            this.user = user;
             this.name.setText(user.getName());
             this.email.setText(user.getEmail());
-            this.user = user;
         }
 
 
