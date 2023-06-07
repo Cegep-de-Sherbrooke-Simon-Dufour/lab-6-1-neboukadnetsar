@@ -37,10 +37,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false);
-
-
     }
 
     @Override
@@ -68,47 +65,12 @@ public class MainFragment extends Fragment {
             viewModel.deleteUser(user);
         };
 
-        /*ActivityResultLauncher<Intent> ajoutUtilisateur = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        Intent data = result.getData();
-                        if (result.getResultCode() == RESULT_OK) {
-                            String nom = data.getStringExtra("nom");
-                            String courriel = data.getStringExtra("courriel");
-                            viewModel.addUser(nom, courriel);
-                        } else if(result.getResultCode() == RESULT_CANCELED) {
-                            Toast toast = Toast.makeText(requireContext(), "Opération annulée !", Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                    }
-                }
-        );
-
-        ajout.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), AjoutUtilisateur.class);
-            ajoutUtilisateur.launch(intent);
-        });*/
-
         NavController navController = NavHostFragment.findNavController(this);
         ajout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Appeler l'action de navigation définie dans le graphique de navigation
                 navController.navigate(R.id.action_mainFragment_to_actionFragment);
             }
         });
-
-        /*Bundle args = getArguments();
-        if (args != null) {
-            String nom = args.getString("nom");
-            String courriel = args.getString("courriel");
-
-            *//*String nom = data.getStringExtra("nom");
-            String courriel = data.getStringExtra("courriel");*//*
-            viewModel.addUser(nom, courriel);
-            // Utilisez les données ici
-        }*/
     }
 }

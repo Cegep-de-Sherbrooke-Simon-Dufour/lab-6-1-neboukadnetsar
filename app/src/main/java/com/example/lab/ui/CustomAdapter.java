@@ -65,7 +65,5 @@ public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> 
             this.name.setText(user.getName());
             this.email.setText(user.getEmail());
         }
-
-
     }
 }

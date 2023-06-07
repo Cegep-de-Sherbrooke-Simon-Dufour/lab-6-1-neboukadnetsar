@@ -32,29 +32,24 @@ public class ActionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_action, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //setContentView(R.layout.activity_main);
 
         UsersListViewModel viewModel  = new ViewModelProvider(requireActivity()).get(UsersListViewModel.class);
 
         Button ajouter = view.findViewById(R.id.ajouter);
         Button annuler = view.findViewById(R.id.annuler);
 
-        //ajouter.setOnClickListener(ajouterListener);
         ajouter.setOnClickListener(v -> {
             EditText editName = view.findViewById(R.id.editName);
             EditText editCourriel = view.findViewById(R.id.editCourriel);
             viewModel.addUser(editName.getText().toString(), editCourriel.getText().toString());
             Navigation.findNavController(view).navigateUp();
         });
-
 
         annuler.setOnClickListener(v -> {
             Navigation.findNavController(view).navigateUp();
