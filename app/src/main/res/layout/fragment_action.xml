@@ -19,21 +19,31 @@
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
+            <TextView
+                android:id="@+id/textView_nom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nom" />
+
             <EditText
                 android:id="@+id/editName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                android:text="Nom" />
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/textView_courriel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/courriel" />
 
             <EditText
                 android:id="@+id/editCourriel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                android:text="Courriel" />
+                android:inputType="text" />
         </LinearLayout>
 
         <Button
@@ -42,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
-            android:text="Annuler"
+            android:text="@string/annuler"
             app:layout_constraintEnd_toStartOf="@+id/ajouter"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -52,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Ajouter"
+            android:text="@string/ajouter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
