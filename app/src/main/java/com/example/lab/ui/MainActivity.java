@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +32,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
+    private NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +47,20 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.main, fragment) // R.id.container est l'ID du conteneur dans votre layout activity_main.xml
                 .commit();*/
 
-        MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.main);
+        //MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.main);
+
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView6);
 
         // Si le fragment n'existe pas encore, on le crée et on l'ajoute à notre FrameLayout
-        if (mainFragment == null) {
+        /*if (mainFragment == null) {
             mainFragment = new MainFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.main, mainFragment)
                     .commit();
+        }*/
+
+        if(navHostFragment != null) {
+            navController = navHostFragment.getNavController();
         }
 
 

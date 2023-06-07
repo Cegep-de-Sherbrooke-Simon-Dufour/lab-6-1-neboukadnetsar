@@ -26,7 +26,7 @@ public class UsersRepository {
 
     public void addUser(Users user) {
         users.add(user);
-        usersLiveData.setValue(users);
+        usersLiveData.setValue(users); //new array
     }
 
     public void deleteUser(Users user) {

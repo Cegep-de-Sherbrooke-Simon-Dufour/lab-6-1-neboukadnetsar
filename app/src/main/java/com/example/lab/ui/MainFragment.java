@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,11 +32,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MainFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MainFragment extends Fragment {
 
     @Override
@@ -57,7 +54,7 @@ public class MainFragment extends Fragment {
         FloatingActionButton ajout = view.findViewById(R.id.fragmentFloatingActionButton);
 
         CustomAdapter adapter = new CustomAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext())); //getcontext
         recyclerView.setAdapter(adapter);
 
         viewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<List<Users>>() {
@@ -71,7 +68,7 @@ public class MainFragment extends Fragment {
             viewModel.deleteUser(user);
         };
 
-        ActivityResultLauncher<Intent> ajoutUtilisateur = registerForActivityResult(
+        /*ActivityResultLauncher<Intent> ajoutUtilisateur = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -92,6 +89,26 @@ public class MainFragment extends Fragment {
         ajout.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), AjoutUtilisateur.class);
             ajoutUtilisateur.launch(intent);
+        });*/
+
+        NavController navController = NavHostFragment.findNavController(this);
+        ajout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Appeler l'action de navigation définie dans le graphique de navigation
+                navController.navigate(R.id.action_mainFragment_to_actionFragment);
+            }
         });
+
+        /*Bundle args = getArguments();
+        if (args != null) {
+            String nom = args.getString("nom");
+            String courriel = args.getString("courriel");
+
+            *//*String nom = data.getStringExtra("nom");
+            String courriel = data.getStringExtra("courriel");*//*
+            viewModel.addUser(nom, courriel);
+            // Utilisez les données ici
+        }*/
     }
 }
