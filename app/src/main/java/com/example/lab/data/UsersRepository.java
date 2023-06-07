@@ -22,16 +22,16 @@ public class UsersRepository {
             new Users("Max", "max@gmail.com"),
             new Users("Dundee", "dundee@gmail.com")
     ));
-    private final MutableLiveData<List<Users>> usersLiveData = new MutableLiveData<>(users);
+    private final MutableLiveData<List<Users>> usersLiveData = new MutableLiveData<>(new ArrayList<>(users));
 
     public void addUser(Users user) {
         users.add(user);
-        usersLiveData.setValue(users); //new array
+        usersLiveData.setValue(new ArrayList<>(users));
     }
 
     public void deleteUser(Users user) {
         users.remove(user);
-        usersLiveData.setValue(users);
+        usersLiveData.setValue(new ArrayList<>(users));
     }
 
     public LiveData<List<Users>> getLiveDataUsers() {

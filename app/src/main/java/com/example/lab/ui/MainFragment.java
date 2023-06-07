@@ -43,7 +43,6 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //setContentView(R.layout.activity_main);
 
         UsersListViewModel viewModel  = new ViewModelProvider(requireActivity()).get(UsersListViewModel.class);
 
@@ -57,7 +56,7 @@ public class MainFragment extends Fragment {
         viewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<List<Users>>() {
             @Override
             public void onChanged(List<Users> users) {
-                adapter.submitList(new ArrayList<>(users));
+                adapter.submitList(users);
             }
         });
 
