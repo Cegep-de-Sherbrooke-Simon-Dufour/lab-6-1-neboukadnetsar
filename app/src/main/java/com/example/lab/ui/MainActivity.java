@@ -35,13 +35,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MainFragment fragment = new MainFragment();
+        /*MainFragment fragment = new MainFragment();
 
         // Utilisez le FragmentManager pour remplacer le contenu de MainActivity par le fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.main, fragment) // R.id.container est l'ID du conteneur dans votre layout activity_main.xml
-                .commit();
+                .commit();*/
+
+        MainFragment mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.main);
+
+        // Si le fragment n'existe pas encore, on le crée et on l'ajoute à notre FrameLayout
+        if (mainFragment == null) {
+            mainFragment = new MainFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main, mainFragment)
+                    .commit();
+        }
+
 
         /*UsersListViewModel viewModel  = new ViewModelProvider(this).get(UsersListViewModel.class);
 
