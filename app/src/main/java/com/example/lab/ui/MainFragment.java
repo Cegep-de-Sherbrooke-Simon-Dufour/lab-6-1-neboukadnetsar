@@ -1,20 +1,26 @@
 package com.example.lab.ui;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.lab.R;
@@ -22,37 +28,39 @@ import com.example.lab.data.Users;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import dagger.hilt.android.AndroidEntryPoint;
-
-@AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link MainFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class MainFragment extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_main, container, false);
 
-        MainFragment fragment = new MainFragment();
 
-        // Utilisez le FragmentManager pour remplacer le contenu de MainActivity par le fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.main, fragment) // R.id.container est l'ID du conteneur dans votre layout activity_main.xml
-                .commit();
+    }
 
-        /*UsersListViewModel viewModel  = new ViewModelProvider(this).get(UsersListViewModel.class);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler);
-        FloatingActionButton ajout = findViewById(R.id.ajout);
+        UsersListViewModel viewModel  = new ViewModelProvider(requireActivity()).get(UsersListViewModel.class);
+
+        RecyclerView recyclerView = view.findViewById(R.id.fragment_recycler);
+        FloatingActionButton ajout = view.findViewById(R.id.fragmentFloatingActionButton);
 
         CustomAdapter adapter = new CustomAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(adapter);
 
-        viewModel.getUsers().observe(this, new Observer<List<Users>>() {
+        viewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<List<Users>>() {
             @Override
             public void onChanged(List<Users> users) {
                 adapter.submitList(new ArrayList<>(users));
@@ -74,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                             String courriel = data.getStringExtra("courriel");
                             viewModel.addUser(nom, courriel);
                         } else if(result.getResultCode() == RESULT_CANCELED) {
-                            Toast toast = Toast.makeText(MainActivity.this, "Opération annulée !", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(requireContext(), "Opération annulée !", Toast.LENGTH_SHORT);
                             toast.show();
                         }
                     }
@@ -82,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
         );
 
         ajout.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, AjoutUtilisateur.class);
+            Intent intent = new Intent(requireContext(), AjoutUtilisateur.class);
             ajoutUtilisateur.launch(intent);
-        });*/
+        });
     }
 }

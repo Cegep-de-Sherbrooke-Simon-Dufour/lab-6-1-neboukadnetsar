@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab.R;
-import com.example.lab.RecyclerCallback;
 import com.example.lab.data.Users;
 
 public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> {
