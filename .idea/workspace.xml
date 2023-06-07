@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8efca8b-e495-42ed-821d-52737cb76de4" name="Changes" comment="" />
+    <list default="true" id="e8efca8b-e495-42ed-821d-52737cb76de4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_ajout_utilisateur.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_action.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_action.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,9 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
         <option value="Interface" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="navigationResourceFile" />
       </list>
     </option>
   </component>
@@ -49,18 +54,23 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "android-custom-viewC:/Users/fanny/AppData/Local/Android/Sdk/sources/android-33/android/view/View.java_SELECTED": "View",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/fanny/AndroidStudioProjects/git/lab-6-1-neboukadnetsar"
+    "last_opened_file_path": "C:/Users/fanny/OneDrive/AEC LEA.8H/PHASE 3 HIVER 2023/420-PC2-SH_DEV_APP_NATIVES_JAVA/cours_15/Animalerie/Animalerie",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="android.template.-1312754022">
       <recent name="com.example.lab5_2" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.lab.ui" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="lab_5_2.app.main" />
+      <module name="lab.app.main" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />

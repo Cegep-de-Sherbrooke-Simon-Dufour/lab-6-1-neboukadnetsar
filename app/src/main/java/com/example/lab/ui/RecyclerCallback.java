@@ -1,4 +1,4 @@
-package com.example.lab5_2;
+package com.example.lab.ui;
 
 public interface RecyclerCallback<T> {
     void returnValue(T object);
