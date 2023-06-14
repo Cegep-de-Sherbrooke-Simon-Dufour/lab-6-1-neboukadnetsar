@@ -68,6 +68,13 @@ public class MainFragment extends Fragment {
             viewModel.deleteUser(user);
         };
 
+        adapter.callback = new RecyclerCallback<Users>() {
+            @Override
+            public void returnValue(Users object) {
+                viewModel.deleteUser(object);
+            }
+        };
+
         /*NavController navController = NavHostFragment.findNavController(this);
         ajout.setOnClickListener(new View.OnClickListener() {
             @Override
