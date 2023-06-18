@@ -53,23 +53,31 @@ public class MainFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext())); //getcontext
         recyclerView.setAdapter(adapter);
 
-        viewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<List<Users>>() {
+        /*viewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<List<Users>>() {
             @Override
             public void onChanged(List<Users> users) {
                 adapter.submitList(users);
             }
+        });*/
+
+        viewModel.getUsers().observe(getViewLifecycleOwner(), users -> {
+            adapter.submitList(users);
         });
 
         adapter.callback = (user) -> {
             viewModel.deleteUser(user);
         };
 
-        NavController navController = NavHostFragment.findNavController(this);
+        /*NavController navController = NavHostFragment.findNavController(this);
         ajout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_mainFragment_to_actionFragment);
             }
+        });*/
+        NavController navController = NavHostFragment.findNavController(this);
+        ajout.setOnClickListener(v -> {
+            navController.navigate(R.id.action_mainFragment_to_actionFragment);
         });
     }
 }
