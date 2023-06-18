@@ -38,4 +38,9 @@ public class Item {
     public String getEmailId() {
         return emailId;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

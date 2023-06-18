@@ -52,6 +52,7 @@ public class MainFragment extends Fragment {
         CustomAdapter adapter = new CustomAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext())); //getcontext
         recyclerView.setAdapter(adapter);
+        Bundle bundle = new Bundle();
 
         /*viewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<List<Users>>() {
             @Override
@@ -64,27 +65,15 @@ public class MainFragment extends Fragment {
             adapter.submitList(users);
         });
 
-        adapter.callback = (user) -> {
-            viewModel.deleteUser(user);
+        NavController navUserDetailsController = NavHostFragment.findNavController(this);
+        adapter.callback = (v, emailId) -> {
+            bundle.putString("emailId", emailId);
+            navUserDetailsController.navigate(R.id.action_mainFragment_to_itemFragment, bundle);
         };
 
-        adapter.callback = new RecyclerCallback<Users>() {
-            @Override
-            public void returnValue(Users object) {
-                viewModel.deleteUser(object);
-            }
-        };
-
-        /*NavController navController = NavHostFragment.findNavController(this);
-        ajout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_mainFragment_to_actionFragment);
-            }
-        });*/
-        NavController navController = NavHostFragment.findNavController(this);
+        NavController navAjoutUserController = NavHostFragment.findNavController(this);
         ajout.setOnClickListener(v -> {
-            navController.navigate(R.id.action_mainFragment_to_actionFragment);
+            navAjoutUserController.navigate(R.id.action_mainFragment_to_actionFragment);
         });
     }
 }

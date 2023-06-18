@@ -12,13 +12,12 @@ import javax.inject.Singleton;
 
 @Singleton
 public class ItemRepository {
-    private final LiveData<List<Item>> itemsLiveData;
+    //private final LiveData<List<Item>> itemsLiveData;
     private final ItemDao itemDao;
 
     @Inject
-    public ItemRepository(UsersDatabase database, String email) {
+    public ItemRepository(UsersDatabase database) {
         itemDao = database.getItemsDao();
-        itemsLiveData = itemDao.getAllItemsForOneUser(email);
     }
 
     public void addItem(Item item) {
@@ -33,7 +32,7 @@ public class ItemRepository {
         });
     }
 
-    public LiveData<List<Item>> getLiveDataItems() {
-        return itemsLiveData;
+    public LiveData<List<Item>> getLiveDataItems(String email) {
+        return itemDao.getAllItemsForOneUser(email);
     }
 }

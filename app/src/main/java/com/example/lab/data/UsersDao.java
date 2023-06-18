@@ -20,9 +20,15 @@ public interface UsersDao {
     @Query("SELECT * FROM users WHERE name LIKE :name LIMIT 1")
     Users findByName(String name);
 
+    @Query("SELECT name FROM users WHERE email = :emailId LIMIT 1")
+    String findNameByEmail(String emailId);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Users... users);
 
     @Delete
     void delete(Users user);
+
+    @Query("DELETE FROM users WHERE email = :emailId")
+    void deleteUserByEmail(String emailId);
 }

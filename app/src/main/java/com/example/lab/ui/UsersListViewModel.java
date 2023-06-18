@@ -35,6 +35,10 @@ public class UsersListViewModel extends ViewModel {
         usersRepository.deleteUser(user);
     }
 
+    public void deleteUserByEmail(String email) {
+        usersRepository.deleteUserByEmail(email);
+    }
+
     public LiveData<List<Users>> getUsers() {
         return usersRepository.getLiveDataUsers();
     }
@@ -47,7 +51,11 @@ public class UsersListViewModel extends ViewModel {
         itemRepository.deleteItem(item);
     }
 
-    public LiveData<List<Item>> getItems() {
-        return itemRepository.getLiveDataItems();
+    public LiveData<List<Item>> getItems(String email) {
+        return itemRepository.getLiveDataItems(email);
+    }
+
+    public String getNameByEmail(String emailId) {
+        return usersRepository.getNameByEmail(emailId);
     }
 }
