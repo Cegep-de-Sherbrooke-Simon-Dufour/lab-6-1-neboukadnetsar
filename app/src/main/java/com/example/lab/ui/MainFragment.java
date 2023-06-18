@@ -12,11 +12,14 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,6 +47,13 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle("Utilisateurs");
+        }
+
         UsersListViewModel viewModel  = new ViewModelProvider(requireActivity()).get(UsersListViewModel.class);
 
         RecyclerView recyclerView = view.findViewById(R.id.fragment_recycler);
@@ -52,6 +62,7 @@ public class MainFragment extends Fragment {
         CustomAdapter adapter = new CustomAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext())); //getcontext
         recyclerView.setAdapter(adapter);
+        Bundle bundle = new Bundle();
 
         /*viewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<List<Users>>() {
             @Override
@@ -64,20 +75,15 @@ public class MainFragment extends Fragment {
             adapter.submitList(users);
         });
 
-        adapter.callback = (user) -> {
-            viewModel.deleteUser(user);
+        NavController navUserDetailsController = NavHostFragment.findNavController(this);
+        adapter.callback = (v, emailId) -> {
+            bundle.putString("emailId", emailId);
+            navUserDetailsController.navigate(R.id.action_mainFragment_to_itemFragment, bundle);
         };
 
-        /*NavController navController = NavHostFragment.findNavController(this);
-        ajout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_mainFragment_to_actionFragment);
-            }
-        });*/
-        NavController navController = NavHostFragment.findNavController(this);
+        NavController navAjoutUserController = NavHostFragment.findNavController(this);
         ajout.setOnClickListener(v -> {
-            navController.navigate(R.id.action_mainFragment_to_actionFragment);
+            navAjoutUserController.navigate(R.id.action_mainFragment_to_actionFragment);
         });
     }
 }

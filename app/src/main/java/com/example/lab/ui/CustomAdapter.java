@@ -15,7 +15,7 @@ import com.example.lab.data.Users;
 
 public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> {
 
-    public RecyclerCallback<Users> callback = (U) -> {};
+    public RecyclerCallback<View> callback = (V, S) -> {};
 
     public CustomAdapter() {
         super(new DiffUtil.ItemCallback<Users>() {
@@ -56,7 +56,7 @@ public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> 
             name = itemView.findViewById(R.id.name);
             email = itemView.findViewById(R.id.email);
             itemView.setOnClickListener(view -> {
-                callback.returnValue(user);
+                callback.returnValue(view, user.getEmail());
             });
         }
 

@@ -3,6 +3,8 @@ package com.example.lab.ui;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.lab.data.Item;
+import com.example.lab.data.ItemRepository;
 import com.example.lab.data.Users;
 import com.example.lab.data.UsersRepository;
 
@@ -16,22 +18,44 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class UsersListViewModel extends ViewModel {
 
-    private UsersRepository repository;
+    private UsersRepository usersRepository;
+    private ItemRepository itemRepository;
 
     @Inject
-    public UsersListViewModel(UsersRepository repository) {
-        this.repository = repository;
+    public UsersListViewModel(UsersRepository userRepository, ItemRepository itemRepository) {
+        this.usersRepository = userRepository;
+        this.itemRepository = itemRepository;
     }
 
     public void addUser(String name, String courriel) {
-        repository.addUser(new Users(name, courriel));
+        usersRepository.addUser(new Users(name, courriel));
     }
 
     public void deleteUser(Users user) {
-        repository.deleteUser(user);
+        usersRepository.deleteUser(user);
+    }
+
+    public void deleteUserByEmail(String email) {
+        usersRepository.deleteUserByEmail(email);
     }
 
     public LiveData<List<Users>> getUsers() {
-        return repository.getLiveDataUsers();
+        return usersRepository.getLiveDataUsers();
+    }
+
+    public void addItem(String name, String emailId) {
+        itemRepository.addItem(new Item(name, emailId));
+    }
+
+    public void deleteItem(Item item) {
+        itemRepository.deleteItem(item);
+    }
+
+    public LiveData<List<Item>> getItems(String email) {
+        return itemRepository.getLiveDataItems(email);
+    }
+
+    public String getNameByEmail(String emailId) {
+        return usersRepository.getNameByEmail(emailId);
     }
 }

@@ -14,10 +14,26 @@
             android:id="@+id/action_mainFragment_to_actionFragment"
             app:destination="@id/actionFragment"
             app:popUpTo="@id/mainFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_itemFragment"
+            app:destination="@id/itemFragment"
+            app:popUpTo="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/actionFragment"
         android:name="com.example.lab.ui.ActionFragment"
         android:label="fragment_action"
         tools:layout="@layout/fragment_action" />
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.example.lab.ui.ItemFragment"
+        android:label="fragment_item"
+        tools:layout="@layout/fragment_item" >
+        <argument
+            android:name="emailId"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>
