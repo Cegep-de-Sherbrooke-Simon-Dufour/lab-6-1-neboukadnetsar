@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.lab.R;
@@ -58,6 +59,7 @@ public class MainFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.fragment_recycler);
         FloatingActionButton ajout = view.findViewById(R.id.fragmentFloatingActionButton);
+        //ImageButton photoProfil = view.findViewById((R.id.imageView_profil_recycler));
 
         CustomAdapter adapter = new CustomAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext())); //getcontext
@@ -76,8 +78,9 @@ public class MainFragment extends Fragment {
         });
 
         NavController navUserDetailsController = NavHostFragment.findNavController(this);
-        adapter.callback = (v, emailId) -> {
-            bundle.putString("emailId", emailId);
+        adapter.callback = (user) -> {
+            bundle.putString("emailId", user.getEmail());
+            bundle.putString("uri", user.getImageUriStringFormat());
             navUserDetailsController.navigate(R.id.action_mainFragment_to_itemFragment, bundle);
         };
 

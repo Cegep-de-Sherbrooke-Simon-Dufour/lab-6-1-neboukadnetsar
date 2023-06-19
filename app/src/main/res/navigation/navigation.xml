@@ -33,7 +33,7 @@
             android:name="emailId"
             app:argType="string" />
         <argument
-            android:name="name"
+            android:name="uri"
             app:argType="string" />
     </fragment>
 </navigation>
