@@ -3,6 +3,7 @@ package com.example.lab.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,12 +50,14 @@ public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView name, email;
-        Users user;
+        private ImageView photoProfil;
+        private Users user;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             email = itemView.findViewById(R.id.email);
+            photoProfil = itemView.findViewById(R.id.imageView_profil_recycler);
             itemView.setOnClickListener(view -> {
                 callback.returnValue(view, user.getEmail());
             });
@@ -64,6 +67,8 @@ public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> 
             this.user = user;
             this.name.setText(user.getName());
             this.email.setText(user.getEmail());
+            if (user.getImageUriUriFormat() != null)
+                this.photoProfil.setImageURI(user.getImageUriUriFormat());
         }
     }
 }
