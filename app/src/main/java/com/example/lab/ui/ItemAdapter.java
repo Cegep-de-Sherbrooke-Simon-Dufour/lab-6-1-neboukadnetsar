@@ -16,7 +16,7 @@ import com.example.lab.data.Users;
 
 public class ItemAdapter extends ListAdapter<Item, ItemAdapter.ViewHolder> {
 
-    public RecyclerIOneParameterCallback<Item> callback = (I) -> {};
+    public RecyclerCallback<Item> callback = (I) -> {};
 
     public ItemAdapter() {
         super(new DiffUtil.ItemCallback<Item>() {
