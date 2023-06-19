@@ -78,8 +78,9 @@ public class MainFragment extends Fragment {
         });
 
         NavController navUserDetailsController = NavHostFragment.findNavController(this);
-        adapter.callback = (v, emailId) -> {
-            bundle.putString("emailId", emailId);
+        adapter.callback = (user) -> {
+            bundle.putString("emailId", user.getEmail());
+            bundle.putString("uri", user.getImageUriStringFormat());
             navUserDetailsController.navigate(R.id.action_mainFragment_to_itemFragment, bundle);
         };
 

@@ -1,5 +1,6 @@
 package com.example.lab.ui;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lab.R;
@@ -47,6 +49,7 @@ public class ItemFragment extends Fragment {
 
         UsersListViewModel viewModel  = new ViewModelProvider(requireActivity()).get(UsersListViewModel.class);
         ItemAdapter itemAdapter = new ItemAdapter();
+        //CustomAdapter userAdapter = new CustomAdapter();
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -58,7 +61,8 @@ public class ItemFragment extends Fragment {
         TextView emailId_textView = view.findViewById(R.id.item_user_email);
         Bundle array = getArguments();
         String emailId = array.getString("emailId");
-        ImageButton photoProfil = view.findViewById(R.id.imageView);
+        String uri = array.getString("uri");
+        ImageView photoProfil = view.findViewById(R.id.imageView);
 
         viewModel.getItems(emailId).observe(getViewLifecycleOwner(), items -> {
             itemAdapter.submitList(items);
@@ -74,7 +78,7 @@ public class ItemFragment extends Fragment {
 
         name_textView.setText(viewModel.getNameByEmail(emailId));
         emailId_textView.setText(emailId);
-        photoProfil.setImageURI(user);
+        photoProfil.setImageURI(Uri.parse(uri));
 
         supprimerUser.setOnClickListener(v -> {
             viewModel.deleteUserByEmail(emailId);

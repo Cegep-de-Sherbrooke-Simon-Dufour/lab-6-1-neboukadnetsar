@@ -16,7 +16,7 @@ import com.example.lab.data.Users;
 
 public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> {
 
-    public RecyclerCallback<View> callback = (V, S) -> {};
+    public RecyclerCallback<Users> callback = (U) -> {};
 
     public CustomAdapter() {
         super(new DiffUtil.ItemCallback<Users>() {
@@ -59,7 +59,7 @@ public class CustomAdapter extends ListAdapter<Users, CustomAdapter.ViewHolder> 
             email = itemView.findViewById(R.id.email);
             photoProfil = itemView.findViewById(R.id.imageView_profil_recycler);
             itemView.setOnClickListener(view -> {
-                callback.returnValue(view, user.getEmail());
+                callback.returnValue(user);
             });
         }
 
