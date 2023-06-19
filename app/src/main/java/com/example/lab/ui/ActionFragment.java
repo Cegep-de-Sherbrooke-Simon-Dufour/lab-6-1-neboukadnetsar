@@ -95,6 +95,8 @@ public class ActionFragment extends Fragment {
         ActivityResultLauncher<PickVisualMediaRequest> takeGallery = registerForActivityResult(
                 new ActivityResultContracts.PickVisualMedia(),
                 uriPhoto -> {
+                    int flag = Intent.FLAG_GRANT_READ_URI_PERMISSION;
+                    requireContext().getContentResolver().takePersistableUriPermission(uriPhoto, flag);
                     photoProfil.setImageURI(uriPhoto);
                     uri = uriPhoto;
                 }

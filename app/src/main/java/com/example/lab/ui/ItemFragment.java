@@ -49,7 +49,6 @@ public class ItemFragment extends Fragment {
 
         UsersListViewModel viewModel  = new ViewModelProvider(requireActivity()).get(UsersListViewModel.class);
         ItemAdapter itemAdapter = new ItemAdapter();
-        //CustomAdapter userAdapter = new CustomAdapter();
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
